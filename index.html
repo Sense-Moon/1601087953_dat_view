@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>dat_view</title>
+</head>
+<style>
+
+body{
+background-color:#000003;
+color:#FCFCFC;
+font-size:17px;
+line-height: 1.6;
+font-family: "メイリオ";
+}
+
+hr{
+display: block;
+    border-width: 0px;
+	border-top: 1px dashed #8c8b8b;
+	margin-bottom: 1em;
+	margin-top:1em;
+
+}
+
+.top {
+width:100%
+}
+.sure {
+width:100%
+}
+
+.sure img{
+width: 90%;
+height: auto;
+display: block;
+}
+</style>
+<script>
+
+function change() {
+	
+  let val = document.getElementById("text-area").value;
+
+  let arr = val.split(/\r\n|\n/);
+
+  let text = [];
+  for (let i=0; i<arr.length;i++){
+    text.push('<div class="resu">'+ arr[i] + '</div><hr>');
+  }
+
+  let txt = document.getElementById("txt");
+  dat=text.join('');
+  dat2=dat.replace(/https:\/\/i.imgur.com/g,"<img src='https:\/\/i.imgur.com").replace( /.jpg|.JPG/g ,".png\ > '").replace( /<><>|<>sage<>|<> | <>/g, "<br>" ).replace( /<\/b>|<b>/g, "" );
+  console.log(dat2);
+  txt.innerHTML = dat2;
+
+}
+
+</script>
+<body>
+  <div class="top">
+
+	<form>
+		<textarea id="text-area"></textarea>
+	</form>
+
+      <p>
+        <button onclick="change()">変換</button>
+      </p>
+  </div>  
+
+
+<ul id="txt" class="sure"></ul>
+
+
+</body>
+</html>
